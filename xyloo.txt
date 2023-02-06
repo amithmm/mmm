@@ -1,0 +1,57 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:audioplayers/src/audio_cache.dart';
+
+void main()
+{
+ runApp(MaterialApp(
+   home: Scaffold(
+     appBar:AppBar(title:Text('Xylophone'),centerTitle:true),
+     body: xylopage(),
+   ),
+ ));
+}
+void PlayAudio(int i)
+{
+ final player=AudioCache();
+ player.play("assets_note$i.wav");
+}
+class xylopage extends StatefulWidget {
+ const xylopage({Key? key}) : super(key: key);
+
+ @override
+ State<xylopage> createState() => _xylopageState();
+}
+
+class _xylopageState extends State<xylopage> {
+ @override
+ Widget build(BuildContext context) {
+   return Column(
+     crossAxisAlignment: CrossAxisAlignment.stretch,
+     children: [
+       Expanded(child: TextButton(
+         style: TextButton.styleFrom(
+           backgroundColor: Colors.greenAccent
+         ), onPressed: () { PlayAudio(1); },
+         child: Text('First'),
+       ),),
+       Expanded(child: TextButton(style: TextButton.styleFrom(backgroundColor: Colors.cyanAccent),
+         onPressed: () { PlayAudio(2) ;},
+         child: Text('Second'),),
+       ),
+       Expanded(child: TextButton(style: TextButton.styleFrom(backgroundColor: Colors.amberAccent),
+         onPressed: () { PlayAudio (3) ;},
+         child:Text('Third') ,),),
+       Expanded(child: TextButton(style: TextButton.styleFrom(backgroundColor: Colors.deepPurpleAccent),
+         onPressed: () {PlayAudio(4);  },
+         child: Text('Fourth'),),),
+       Expanded(child: TextButton(style:TextButton.styleFrom(backgroundColor: Colors.pinkAccent),
+         onPressed: () {  PlayAudio(5);},
+       child: Text('Fifth'),),),
+       Expanded(child: TextButton(style:TextButton.styleFrom(backgroundColor: Colors.white12),
+         onPressed: () {  PlayAudio(6);},
+         child: Text('Sixth'),),),
+     ],
+   );
+ }
+}
